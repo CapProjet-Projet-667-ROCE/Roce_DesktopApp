@@ -1,0 +1,19 @@
+.button
+{
+-fx-background-color : #11607d;
+}
+.button:hover
+{
+-fx-background-color : #031319;
+}
+
+#mainBtn:focused {
+-fx-background-color : #031319;
+-fx-border-color : #FFFF;
+-fx-border-width : 0px 0px 0px 5px
+}
+
+.slider .thumb {
+    -fx-background-color: #11607d ;
+}
+    
