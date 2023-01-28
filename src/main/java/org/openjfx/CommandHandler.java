@@ -8,23 +8,32 @@ import javafx.scene.input.KeyCode;
 
 public class CommandHandler {
 
-    static Robot robot = new Robot();
-    static Runtime runtime = Runtime.getRuntime();
     static Properties prop = IOHandler.readConfigFile();
+    Robot robot = new Robot();
+    Runtime runtime = Runtime.getRuntime();
+
+    //hashMap<String, Interface>
+    
+    private interface invokeMethod {
+        void method();
+    } 
 
 
     //Traitement d'un signal et appel de la méthode associé
     public static void signalManager(String signal){
+        //signal = t1:
+        //signal = t9:89
         //splited[0] = id | splited[1] = arg
         String[] splited = signal.split(":");
 
+        String func = prop.getProperty(splited[0]);
         //TODO : edit map<String,Function>
         //TODO : getFonction(splited[0])
         //TODO : callFontion(splited[1])
     }
 
 
-    public static void launchCmd (String cmd){
+    public void launchCmd (String cmd){
         try {
             runtime.exec(cmd);
         } catch (IOException ioe) {
@@ -32,22 +41,22 @@ public class CommandHandler {
         }
     }
 
-    public static void preview (){
+    public void preview (){
         robot.keyPress(KeyCode.LEFT);
         robot.keyRelease(KeyCode.LEFT);
     }
 
-    public static void next(){
+    public void next(){
         robot.keyPress(KeyCode.RIGHT);
         robot.keyRelease(KeyCode.RIGHT);
     }
 
-    public static void play(){
+    public void play(){
         robot.keyPress(KeyCode.SPACE);
         robot.keyRelease(KeyCode.SPACE);
     }
 
-    public static void lock(){
+    public void lock(){
         robot.keyPress(KeyCode.WINDOWS);
         robot.keyPress(KeyCode.WINDOWS);
 
@@ -55,7 +64,7 @@ public class CommandHandler {
         robot.keyRelease(KeyCode.L);
     }
 
-    public static void winG(){
+    public void winG(){
         robot.keyPress(KeyCode.WINDOWS);
         robot.keyPress(KeyCode.G);
 
@@ -63,7 +72,7 @@ public class CommandHandler {
         robot.keyRelease(KeyCode.G);
     }
 
-    public static void mute(){
+    public void mute(){
         robot.keyPress(KeyCode.CONTROL);
         robot.keyPress(KeyCode.SHIFT);
         robot.keyPress(KeyCode.M);
@@ -73,12 +82,20 @@ public class CommandHandler {
         robot.keyRelease(KeyCode.M);
     }
 
-    public static void volPlus(){
+    public void volPlus(){
         launchCmd("nircmd.exe changesysvolume 2000");
     }
 
-    public static void volMinus(){
+    public void volMinus(){
         launchCmd("nircmd.exe changesysvolume -2000");
+    }
+
+    public void setVol(){
+
+    }
+
+    public void setMic(){
+
     }
 
 }
