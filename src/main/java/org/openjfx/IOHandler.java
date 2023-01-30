@@ -59,4 +59,6 @@ public class IOHandler {
     //TODO : Implémenter readLogFile
 
     //TODO : Implémenter writeLog
+        //FORMAT
+        //2023-30-01.750 [TYPE: Error, Connexion, Info] 
 }
