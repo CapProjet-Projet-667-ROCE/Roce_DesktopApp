@@ -7,10 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -19,6 +20,9 @@ public class mainController implements Initializable{
     //Définition FXML des composants JavaFX
     @FXML
     private Label connStatus;
+
+    @FXML
+    private ImageView imgStatus;
 
     @FXML
     private ScrollPane scrollPane;
@@ -128,6 +132,12 @@ public class mainController implements Initializable{
     @FXML
     private ChoiceBox<String> choiceBox;
 
+    Image img_redDot = new Image(mainController.class.getResource("img/redDot.png").toString());
+    
+    Image img_orangeDot = new Image(mainController.class.getResource("img/orangeDot.png").toString());
+    
+    Image img_greenDot = new Image(mainController.class.getResource("img/greenDot.png").toString());
+
     
     //Initialisation des informations manquantes à certains composants
     //Initialize est appelée au démarrage de l'application
@@ -223,6 +233,7 @@ public class mainController implements Initializable{
 
     //Lance un protocole de connexion en fonction de la valeur de la choiceBox
     public void startConnection(ActionEvent event){
+
         //Fermeture des connexions précédentes si elles existent
         ServerHandler.close();
 
@@ -243,9 +254,20 @@ public class mainController implements Initializable{
                 InetAddress serverIP = InetAddress.getByName(choice);
 
                 //Genration d'une nouvelle instance ServerHandler
-                ServerHandler conn = ServerHandler.getInstance(serverIP, p1, p2);
-                
-                conn.start();
+                ServerHandler.getInstance(serverIP, p1, p2);
+
+                ServerHandler.task.messageProperty().addListener((obs, oldMsg, newMsg) -> {
+                    switch(newMsg){
+                        case "WAIT":
+                            connStatus.setText("En attente ...");
+                            imgStatus.setImage(img_orangeDot);
+                            break;
+                        case "CLOSE":
+                            connStatus.setText("Non connecté");
+                            imgStatus.setImage(img_redDot);
+                    }
+                });
+                new Thread(ServerHandler.task).start();
             } catch (UnknownHostException uhe) {
                 //TODO : Envoie d'un log : Erreur de connexion, addresse [ip] non reconnue
             }

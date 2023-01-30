@@ -10,7 +10,7 @@ public class IOHandler {
 
     //Récupération des chemins d'accès à conf et logs
     static String conf = IOHandler.class.getResource("conf.properties").getFile();
-    static String logs = IOHandler.class.getResource("conf.properties").getFile();
+    static String logs = IOHandler.class.getResource("logs.txt").getFile();
 
     public static Properties readConfigFile() {
         FileInputStream fis = null;
