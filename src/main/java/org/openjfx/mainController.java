@@ -10,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -18,6 +19,9 @@ public class mainController implements Initializable{
     //Définition FXML des composants JavaFX
     @FXML
     private Label connStatus;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private Label labP1;
