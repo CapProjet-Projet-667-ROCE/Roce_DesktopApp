@@ -10,7 +10,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.*;
-import java.io.*;
 import java.util.*;
 
 
@@ -84,28 +83,28 @@ public class mainController implements Initializable{
     private Button b8;
 
     @FXML
-    private Button bp1;
+    private Button setter1;
 
     @FXML
-    private Button bp2;
+    private Button setter2;
 
     @FXML
-    private Button bp3;
+    private Button setter3;
 
     @FXML
-    private Button bp4;
+    private Button setter4;
 
     @FXML
-    private Button bp5;
+    private Button setter5;
 
     @FXML
-    private Button bp6;
+    private Button setter6;
 
     @FXML
-    private Button bp7;
+    private Button setter7;
 
     @FXML
-    private Button bp8;
+    private Button setter8;
 
     @FXML
     private AnchorPane pnBtn;
@@ -144,14 +143,14 @@ public class mainController implements Initializable{
         b6.setText(prop.getProperty("b6"));
         b7.setText(prop.getProperty("b7"));
         b8.setText(prop.getProperty("b8"));
-        bp1.setText(prop.getProperty("b1"));
-        bp2.setText(prop.getProperty("b2"));
-        bp3.setText(prop.getProperty("b3"));
-        bp4.setText(prop.getProperty("b4"));
-        bp5.setText(prop.getProperty("b5"));
-        bp6.setText(prop.getProperty("b6"));
-        bp7.setText(prop.getProperty("b7"));
-        bp8.setText(prop.getProperty("b8"));
+        setter1.setText(prop.getProperty("b1"));
+        setter2.setText(prop.getProperty("b2"));
+        setter3.setText(prop.getProperty("b3"));
+        setter4.setText(prop.getProperty("b4"));
+        setter5.setText(prop.getProperty("b5"));
+        setter6.setText(prop.getProperty("b6"));
+        setter7.setText(prop.getProperty("b7"));
+        setter8.setText(prop.getProperty("b8"));
 
         //Alimentation des choix de la choiceBox de connexion
         choiceBox.getItems().addAll(getIPV4());
@@ -190,7 +189,7 @@ public class mainController implements Initializable{
 
     //Gestion des boutons de paramètrage des ports
     @FXML
-    public void handleSetClicks(ActionEvent event){
+    public void handlePortsClicks(ActionEvent event){
         String value = null;
         if(event.getSource() == btnP1){
             value = tfP1.getText();
@@ -210,6 +209,12 @@ public class mainController implements Initializable{
                 IOHandler.writeConfigFile("usb", value);
             }
         }
+    }
+
+    //Gestion des clicks "Triggers"
+    @FXML
+    public void handleTriggersClicks(ActionEvent event){
+        CommandHandler.signalManager(((Button)event.getSource()).getId() + ":");
     }
 
     //Lance un protocole de connexion en fonction de la valeur de la choiceBox

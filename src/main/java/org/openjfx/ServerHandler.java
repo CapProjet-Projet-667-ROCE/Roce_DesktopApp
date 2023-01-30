@@ -61,8 +61,6 @@ public class ServerHandler {
                                 try{
                                     signal = reader.readLine();
                                     while(signal!=null){
-                                        //System.out.println(signal);
-
                                         CommandHandler.signalManager(signal);
                                         signal = reader.readLine();
                                     }
