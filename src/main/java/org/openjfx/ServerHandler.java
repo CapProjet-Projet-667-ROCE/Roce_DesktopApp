@@ -30,55 +30,55 @@ public class ServerHandler {
         try {
             //Creation d'un nouveau server
             serverSocket = new ServerSocket(port1, 1, desktopIP);
+            IOHandler.writeLog("INFO", "Création de  "+serverSocket.toString());
             //Creation d'une nouvelle tâche
             task = new Task<Void>(){
                 @Override
                 public Void call(){
                     try {
+                        boolean connected = false;
+                        String toggle = "0";
                         while(!serverSocket.isClosed()){
-                            System.out.println("En attente de connexion sur : "+serverSocket.toString());
-                            updateMessage("WAIT");
+                            if (!connected){
+                                updateMessage("WAIT");
+                            }
                             Socket socket = serverSocket.accept();
-                            //TODO : Update status label -> Connection partielle
-                            //TODO : Connection sur le p2 du l'addresse récupérée dans socket.getInetAddress().getHostAddress()
-                            //TODO : Envoie des labels de bouttons
-                            //TODO : Update status label -> Connecté
-                            //System.out.println("Connection du client : " + socket.getInetAddress().getHostAddress());
+                            IOHandler.writeLog("INFO", "Connection au device : "+ socket.getInetAddress().getHostAddress());
+                            connected = true;
+                            updateMessage("FULL");
     
                             //Creation du lecteur de socket
                             InputStream input = socket.getInputStream();
                             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                
-                            Thread server = new Thread(new Runnable() {
-                                String signal;
-                                public void run(){
-                                    try{
-                                        signal = reader.readLine();
-                                        while(signal!=null){
-                                            CommandHandler.signalManager(signal);
-                                            signal = reader.readLine();
-                                        }
-                                        //Reception du signal NULL 
-                                        reader.close();
-                                        input.close();
-                                    } catch (IOException ioe){
-                                        //TODO : envoie d'un log : ioe.getMessage();
-                                    }
+
+                            String signal;
+                            try{
+                                signal = reader.readLine();
+                                while(signal!=null){
+                                    updateMessage(toggle+";"+signal);
+                                    toggle = toggle == "1" ? "0" : "1";
+                                    signal = reader.readLine();
                                 }
-                            });
-    
-                        //Lancement d'un Thread secondaire : server
-                        server.start();
+                                //Reception du signal NULL 
+                                reader.close();
+                                input.close();
+                                updateMessage("CLOSE");
+                                IOHandler.writeLog("INFO", "Déconnection du device : "+ socket.getInetAddress().getHostAddress());
+                            } catch (IOException ioe){
+                                ioe.printStackTrace();
+                                IOHandler.writeLog("ERREUR", ioe.getMessage());
+                            }
+
                         }
     
-                    } catch (IOException e) {
+                    } catch (IOException ioe) {
                         updateMessage("CLOSE");
                     }
                     return null;
                 }
             };
         } catch (IOException ioe) {
-            //TODO : envoie d'un log : Erreur lors la création de l'objet ServerSocket
+            IOHandler.writeLog("ERREUR", "Erreur lors de la création du socket");
         }
     }
 
@@ -93,7 +93,7 @@ public class ServerHandler {
             try {
                 serverSocket.close();
             } catch (IOException ioe) {
-                //TODO : envoie d'un log : Erreur lors de la fermeture du socket
+                IOHandler.writeLog("ERREUR", "Erreur lors de la fermeture du socket");
             }
         }
     }

@@ -25,7 +25,7 @@ public class mainController implements Initializable{
     private ImageView imgStatus;
 
     @FXML
-    private ScrollPane scrollPane;
+    private TextArea textArea;
 
     @FXML
     private Label labP1;
@@ -166,9 +166,11 @@ public class mainController implements Initializable{
         setter7.setText(prop.getProperty("b7"));
         setter8.setText(prop.getProperty("b8"));
 
+        textArea.setText(IOHandler.readLogs());
+
         //Alimentation des choix de la choiceBox de connexion
         choiceBox.getItems().addAll(getIPV4());
-        choiceBox.getItems().add("USB");
+        //choiceBox.getItems().add("USB");
         choiceBox.setOnAction(this::startConnection);
 
         //Ajout des listener pour modifier les labels en fonction de la valeur des sliders
@@ -194,6 +196,7 @@ public class mainController implements Initializable{
             pnBtn.toFront();
         }
         else if(event.getSource() == btnLogs){
+            textArea.setText(IOHandler.readLogs());
             pnLogs.toFront();
         } 
         else if(event.getSource() == btnSettings){
@@ -239,8 +242,7 @@ public class mainController implements Initializable{
 
         String choice = choiceBox.getValue();
         if (choice == "USB"){
-            //TODO : Implémenter le protocole USB
-            System.out.println("USB Connexion is not accessible yet");
+            //System.out.println("USB Connexion is not accessible yet");
         }
         else{
             //Lancement du protocole de connexion Wi-Fi
@@ -262,14 +264,32 @@ public class mainController implements Initializable{
                             connStatus.setText("En attente ...");
                             imgStatus.setImage(img_orangeDot);
                             break;
+                        case "FULL":
+                            connStatus.setText("Connecté");
+                            imgStatus.setImage(img_greenDot);
+                            break;
                         case "CLOSE":
                             connStatus.setText("Non connecté");
                             imgStatus.setImage(img_redDot);
+                             break;
+                        default:
+                            String[] splited = newMsg.split(";");
+                            String[] splited2 = splited[1].split(":");
+                            if (splited2.length > 1){
+                                switch(splited2[0]){
+                                    case "b9":
+                                        slider1.setValue(Double.parseDouble(splited2[1]));
+                                        break;
+                                    case "b10":
+                                        slider2.setValue(Double.parseDouble(splited2[1]));
+                                }
+                            }
+                            CommandHandler.signalManager(splited[1]);
                     }
                 });
                 new Thread(ServerHandler.task).start();
             } catch (UnknownHostException uhe) {
-                //TODO : Envoie d'un log : Erreur de connexion, addresse [ip] non reconnue
+                IOHandler.writeLog("ERROR", "Impossible de trouver "+choice+"sur l'interface réseau");
             }
         }
         
@@ -292,7 +312,7 @@ public class mainController implements Initializable{
                 }
             }
         } catch (SocketException se) {
-            //TODO : envoie d'un log : Impossible d'établir la liste des IPv4 disponibles
+            IOHandler.writeLog("ERROR", "Impossible d'établir la liste des IPv4 disponibles");
         }
         return listIPv4;
     }

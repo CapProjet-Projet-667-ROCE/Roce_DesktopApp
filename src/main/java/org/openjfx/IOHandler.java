@@ -2,7 +2,8 @@ package org.openjfx;
 
 import java.io.*;
 import java.util.Properties;
-
+import java.text.SimpleDateFormat;  
+import java.util.Date;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -23,11 +24,11 @@ public class IOHandler {
         }
         //Fichier conf introuvable
         catch (FileNotFoundException fnfe) {
-            //TODO : envoie d'un log : Le fichier de config : [conf] est introuvable
+            writeLog("ERROR", conf+" est introuvable");
         }
         //Erreur lors du chargement du fichier
         catch (IOException ioe) {
-            //TODO : envoie d'un log : Erreur lors du chargement du fichier : [conf]
+            writeLog("ERROR", "Erreur lors du chargement de "+conf);
         } 
         return prop;
     }
@@ -43,7 +44,7 @@ public class IOHandler {
         }
         //Erreur lors du chargement du fichier.
         catch (IOException ioe){
-            //TODO : envoie d'un log : Erreur lors du chargement du fichier : [conf]
+            writeLog("ERROR", "Erreur lors de l'écriture de "+conf);
         }
     }
 
@@ -53,12 +54,42 @@ public class IOHandler {
         a.setHeaderText(Hmsg);
         a.setContentText(msg);
         a.showAndWait();
-        //TODO : bonus : Customiser la fenêtre d'alerte (JavaFX + CSS)
     }
 
-    //TODO : Implémenter readLogFile
+    public static String readLogs(){
+        String datastr = "";
+        try {
+            FileInputStream in = new FileInputStream(logs);
+            DataInputStream datain = new DataInputStream(in);
+            BufferedReader br = new BufferedReader(new InputStreamReader(datain));
+            char c;
+            while ((c = (char) br.read()) != (char) -1){
+                String temp = Character.toString(c);
+                datastr = datastr.concat(temp);
+            }
+            in.close();
+        } 
+        catch (IOException ioe){
+            System.out.println("error reading logs file");
+        }
+        return datastr;
+    }
 
-    //TODO : Implémenter writeLog
-        //FORMAT
-        //2023-30-01.750 [TYPE: Error, Connexion, Info] 
+    public static void writeLog (String type, String msg){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = new Date();
+        String strDate = formatter.format(date);
+
+        String data = strDate + " [" + type + "] " + msg;
+
+        try {
+            FileOutputStream out = new FileOutputStream(logs, true);
+            BufferedWriter bout = new BufferedWriter(new OutputStreamWriter(out));
+            bout.write(data);
+            bout.newLine();
+            bout.close();
+        }
+        catch (IOException ioe) {
+        }
+    }
 }

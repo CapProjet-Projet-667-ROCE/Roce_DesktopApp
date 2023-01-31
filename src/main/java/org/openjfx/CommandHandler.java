@@ -15,7 +15,7 @@ public class CommandHandler {
     static Runtime runtime = Runtime.getRuntime();
 
     interface invokeMethod {
-         void invoke();
+         void invoke(String arg);
     }
 
     static Map<String, invokeMethod> funcMap = setFuncMap();
@@ -24,48 +24,54 @@ public class CommandHandler {
         Map<String, invokeMethod> map = new HashMap<String, invokeMethod>();
 
         map.put("Preview", new invokeMethod() {
-            public void invoke(){
+            public void invoke(String arg){
+                robot.keyPress(KeyCode.CONTROL);
                 robot.keyPress(KeyCode.LEFT);
+
+                robot.keyRelease(KeyCode.CONTROL);
                 robot.keyRelease(KeyCode.LEFT);
             }
         });
 
         map.put("Next", new invokeMethod() {
-            public void invoke(){
+            public void invoke(String arg){
+                robot.keyPress(KeyCode.CONTROL);
                 robot.keyPress(KeyCode.RIGHT);
+
+                robot.keyRelease(KeyCode.CONTROL);
                 robot.keyRelease(KeyCode.RIGHT);
             }
         });
 
         map.put("Play/Pause", new invokeMethod() {
-            public void invoke(){
+            public void invoke(String arg){
                 robot.keyPress(KeyCode.SPACE);
                 robot.keyRelease(KeyCode.SPACE);
             }
         });
 
         map.put("Lock", new invokeMethod() {
-            public void invoke(){
-                robot.keyPress(KeyCode.WINDOWS);
-                robot.keyPress(KeyCode.L);
+            public void invoke(String arg){
+                //robot.keyPress(KeyCode.WINDOWS);
+                //robot.keyPress(KeyCode.L);
         
-                robot.keyRelease(KeyCode.WINDOWS);
-                robot.keyRelease(KeyCode.L);
+                //robot.keyRelease(KeyCode.WINDOWS);
+                //robot.keyRelease(KeyCode.L);
             }
         });
 
         map.put("Win+G", new invokeMethod() {
-            public void invoke(){
-                robot.keyPress(KeyCode.WINDOWS);
-                robot.keyPress(KeyCode.G);
+            public void invoke(String arg){
+                //robot.keyPress(KeyCode.WINDOWS);
+                //robot.keyPress(KeyCode.G);
         
-                robot.keyRelease(KeyCode.WINDOWS);
-                robot.keyRelease(KeyCode.G);
+                //robot.keyRelease(KeyCode.WINDOWS);
+                //robot.keyRelease(KeyCode.G);
             }
         });
 
         map.put("Mute", new invokeMethod() {
-            public void invoke(){
+            public void invoke(String arg){
                 robot.keyPress(KeyCode.CONTROL);
                 robot.keyPress(KeyCode.SHIFT);
                 robot.keyPress(KeyCode.M);
@@ -77,14 +83,54 @@ public class CommandHandler {
         });
 
         map.put("Launch", new invokeMethod() {
-            public void invoke(){
+            public void invoke(String arg){
                 try {
-                    runtime.exec("calc.exe");
+                    String[] tab = {"calc.exe"};
+                    runtime.exec(tab);
                 } catch (IOException ioe) {
-                    //TODO : envoie d'un log : Impossible de lancer la commande [cmd]
+                    IOHandler.writeLog("ERROR", "Impossible de lancer calc.exe");
                 }
             }
         });
+
+        map.put("Vol+", new invokeMethod() {
+            public void invoke(String arg){
+                try {
+                    String[] tab = {"nircmd.exe", "changesysvolume", "660"};
+                    runtime.exec(tab);
+                } catch (IOException ioe) {
+                    IOHandler.writeLog("ERROR", "Impossible de lancer nircmd.exe setsysvolume");
+                }
+            }
+        });
+
+        map.put("Vol-", new invokeMethod() {
+            public void invoke(String arg){
+                try {
+                    String[] tab = {"nircmd.exe", "changesysvolume", "-660"};
+                    runtime.exec(tab);
+                } catch (IOException ioe) {
+                    IOHandler.writeLog("ERROR", "Impossible de lancer nircmd.exe setsysvolume");
+                }
+            }
+        });
+
+        map.put("SetSpeaker", new invokeMethod() {
+            public void invoke(String arg){
+                try {
+                    String[] tab = {"nircmd.exe", "setsysvolume", String.valueOf(Integer.parseInt(arg)*665)};
+                    runtime.exec(tab);
+                } catch (IOException ioe) {
+                    IOHandler.writeLog("ERROR", "Impossible de lancer nircmd.exe setsysvolume");
+                }
+            }
+        });
+
+        map.put("SetMic", new invokeMethod() {
+            public void invoke(String arg){
+            }
+        });
+
         return map;
     }
 
@@ -94,8 +140,13 @@ public class CommandHandler {
         //signal = t1:
         //signal = t9:89
         //splited[0] = id | splited[1] = arg
+        System.out.println(signal);
         String[] splited = signal.split(":");
-        funcMap.get(prop.getProperty(splited[0])).invoke();
+        try {
+            funcMap.get(prop.getProperty(splited[0])).invoke(splited[1]);
+        } catch (Exception e) {
+            funcMap.get(prop.getProperty(splited[0])).invoke(null);
+        }
     }
 
 }

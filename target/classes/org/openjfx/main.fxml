@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -114,7 +114,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" disable="true">
                      <children>
                         <Label text="Port 2 : " textFill="WHITE">
                            <font>
@@ -152,143 +152,7 @@
       </VBox>
       <AnchorPane fx:id="pnLogs" prefHeight="900.0" prefWidth="1050.0" style="-fx-background-color: #031319;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane fx:id="scrollPane" layoutX="56.0" layoutY="58.0" prefHeight="536.0" prefWidth="760.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="pnSettings" prefHeight="900.0" prefWidth="1050.0" style="-fx-background-color: #031319;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <GridPane alignment="CENTER" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="697.0" vgap="20.0" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="127.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="241.0" minHeight="10.0" prefHeight="236.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="218.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Button fx:id="setter1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter3" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter4" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter5" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter6" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter7" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="setter8" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="164.0" prefWidth="151.0" stylesheets="@css/style.css" text="Function" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
-            <VBox layoutX="175.0" layoutY="500.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="600.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label text="Port 1 :" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfP1" prefHeight="31.0" prefWidth="100.0">
-                           <HBox.margin>
-                              <Insets left="35.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="btnP1" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/tick.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label text="Port 2 :" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfP2" prefHeight="31.0" prefWidth="100.0">
-                           <HBox.margin>
-                              <Insets left="35.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="btnP2" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" text="Valider" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/tick.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label text="Port USB :" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfPUSB" prefHeight="31.0" prefWidth="100.0" />
-                        <Button fx:id="btnPUSB" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" text="Valider" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/tick.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <TextArea fx:id="textArea" editable="false" layoutX="425.0" layoutY="350.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnBtn" prefHeight="900.0" prefWidth="1050.0" style="-fx-background-color: #031319;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -357,8 +221,8 @@
                         <Image url="@img/speaker.png" />
                      </image>
                   </ImageView>
-                  <Slider fx:id="slider1" blockIncrement="5.0" prefHeight="14.0" prefWidth="460.0" snapToTicks="true" stylesheets="@css/style.css" value="100.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="sliderValue1" contentDisplay="RIGHT" text="100" textFill="WHITE">
+                  <Slider fx:id="slider1" blockIncrement="5.0" prefHeight="14.0" prefWidth="460.0" snapToTicks="true" stylesheets="@css/style.css" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="sliderValue1" contentDisplay="RIGHT" text="0" textFill="WHITE">
                      <font>
                         <Font name="Agency FB" size="24.0" />
                      </font>
@@ -378,8 +242,8 @@
                         <Image url="@img/microphone.png" />
                      </image>
                   </ImageView>
-                  <Slider fx:id="slider2" blockIncrement="5.0" prefHeight="14.0" prefWidth="460.0" stylesheets="@css/style.css" value="50.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="sliderValue2" contentDisplay="RIGHT" text="50" textFill="WHITE">
+                  <Slider fx:id="slider2" blockIncrement="5.0" prefHeight="14.0" prefWidth="460.0" stylesheets="@css/style.css" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="sliderValue2" contentDisplay="RIGHT" text="0" textFill="WHITE">
                      <font>
                         <Font name="Agency FB" size="24.0" />
                      </font>
@@ -389,6 +253,142 @@
                   </Label>
                </children>
             </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnSettings" prefHeight="900.0" prefWidth="1050.0" style="-fx-background-color: #031319;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane alignment="CENTER" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="697.0" vgap="20.0" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="127.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="241.0" minHeight="10.0" prefHeight="236.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="218.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="setter1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter3" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter5" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter6" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter7" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter4" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="setter8" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="164.0" prefWidth="151.0" stylesheets="@css/style.css" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+            <VBox layoutX="175.0" layoutY="500.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="600.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Port 1 :" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfP1" prefHeight="31.0" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="btnP1" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/tick.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" disable="true" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Port 2 :" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfP2" prefHeight="31.0" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="btnP2" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" text="Valider" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/tick.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" disable="true" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Port USB :" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfPUSB" prefHeight="31.0" prefWidth="100.0" />
+                        <Button fx:id="btnPUSB" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handlePortsClicks" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/style.css" text="Valider" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/tick.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

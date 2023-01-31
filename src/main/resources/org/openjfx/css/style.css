@@ -17,15 +17,13 @@
     -fx-background-color: #11607d ;
 }
 
-.ScrollPane {
-
+.text-area {
+    -fx-text-fill : #ffffff;
+    -fx-border-color : black;
+    -fx-font-size : 1.4em;
 }
 
-.TextAera {
-
-}
-
-.dialog-pane {
-    -fx-background-color: #11607d ;
+.text-area .content {
+    -fx-background-color: black;
 }
     

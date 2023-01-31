@@ -1,0 +1,5 @@
+31-01-2023 23:38:37 [INFO] Création de  ServerSocket[addr=/192.168.1.12,localport=12137]
+31-01-2023 23:38:39 [INFO] Création de  ServerSocket[addr=/192.168.56.1,localport=12137]
+31-01-2023 23:38:46 [INFO] Création de  ServerSocket[addr=/192.168.1.12,localport=12137]
+31-01-2023 23:39:01 [INFO] Connection au device : 192.168.1.11
+31-01-2023 23:39:31 [INFO] Déconnection du device : 192.168.1.11
